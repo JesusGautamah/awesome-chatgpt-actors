@@ -17,11 +17,11 @@ Add to your rakefile:
 
     require 'awesome_chatgpt_actors'
 
+    AwesomeChatgptActors.load_tasks
+
 Run in the command line:
 
     $ rake chatgpt_actors:install
-
-
 ## Usage
 
 ```ruby
