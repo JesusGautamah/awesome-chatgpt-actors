@@ -17,11 +17,11 @@ Add to your rakefile:
 
     require 'awesome_chatgpt_actors'
 
+    AwesomeChatgptActors.load_tasks
+
 Run in the command line:
 
     $ rake chatgpt_actors:install
-
-
 ## Usage
 
 ```ruby
@@ -80,6 +80,14 @@ AwesomeChatgptActors::CastControl.csv_path # can be overriden by setting the env
 AwesomeChatgptActors::CastControl.temp_path # can be overriden by setting the environment variable CAST_TEMP_PATH
 ```
 
+## Testing
+
+This gem was tested with Rspec. To run the tests, execute:
+
+    $ bundle exec rspec
+
+<!-- Coverage: -->
+<!-- local image path: coverage-image/simplecov-actors.png -->
 
 ## Contributing
 

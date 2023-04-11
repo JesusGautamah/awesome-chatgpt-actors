@@ -4,7 +4,7 @@ module AwesomeChatgptActors
   # This class is responsible to control the actors csv file
   class CastControl
     def self.csv_path
-      ENV.fetch("CAST_CSV_NAME", "data/awesome-chatgpt-prompts.csv")
+      ENV.fetch("CAST_CSV_NAME", "prompts-data/awesome-chatgpt-prompts.csv")
     end
 
     def self.temp_path

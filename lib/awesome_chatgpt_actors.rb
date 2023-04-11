@@ -9,4 +9,10 @@ require "openai"
 # Main module
 module AwesomeChatgptActors
   require "awesome_chatgpt_actors/railtie" if defined?(Rails)
+
+  class << self
+    def load_tasks
+      Dir[File.join(__dir__, "tasks", "*.rake")].each { |r| load r }
+    end
+  end
 end
