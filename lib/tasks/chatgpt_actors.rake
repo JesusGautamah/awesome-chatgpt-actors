@@ -10,5 +10,6 @@ namespace :chatgpt_actors do
 
     FileUtils.mkdir_p("prompts-data") unless Dir.exist?("prompts-data")
     FileUtils.cp(path, "prompts-data/awesome-chatgpt-prompts.csv")
+    puts "Installed prompts-data/awesome-chatgpt-prompts.csv"
   end
 end
