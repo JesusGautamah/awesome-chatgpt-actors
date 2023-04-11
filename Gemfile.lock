@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    awesome_chatgpt_actors (0.1.0)
+    awesome_chatgpt_actors (0.1.1)
       csv
       openai
 

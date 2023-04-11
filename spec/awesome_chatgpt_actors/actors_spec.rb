@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe AwesomeChatgptActors::Actor do
-  let(:csv_file) { "data/awesome-chatgpt-prompts.csv" }
+  let(:csv_file) { "prompts-data/awesome-chatgpt-prompts.csv" }
   let(:prompt_type) { "Linux Terminal" }
   let(:default_type) { "Virtual Assistant" }
   let(:default_actor) { AwesomeChatgptActors::Actor.new }
