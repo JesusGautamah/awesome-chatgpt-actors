@@ -38,7 +38,7 @@ actor = AwesomeChatgptActors::Actor.new
 
 # Initialize a new actor with options
 actor = AwesomeChatgptActors::Actor.new(
-  actor: 'Linux Terminal', # The type of actor to use, check the list in https://github.com/f/awesome-chatgpt-prompts/blob/main/prompts.csv
+  prompt_type: 'Linux Terminal', # The type of actor to use, check the list in https://github.com/f/awesome-chatgpt-prompts/blob/main/prompts.csv
   language: 'en', # The language of the prompt, if other language is specified, it will requirean openai api key to perform the translation
 )
 
@@ -54,7 +54,7 @@ actor = AwesomeChatgptActors::Actor.new(
 )
 
 # Change the actor
-actor.act_as(actor: 'Virtual Assistant', language: 'ru') # it will return the same actor with the new options, check the list in https://github.com/f/awesome-chatgpt-prompts/blob/main/prompts.csv
+actor.act_as('Virtual Assistant') # it will return the same actor with the new options, check the list in https://github.com/f/awesome-chatgpt-prompts/blob/main/prompts.csv
 
 # Add a new actor to csv file
 AwesomeChatgptActors::CastControl.add_actor(actor: 'Virtual Assistant', prompt: 'I want you to act as a virtual assistant. I will give you tasks and you will reply with the results of the tasks. I want you to only reply with the results of the tasks, and nothing else. Do not write explanations. My first task is ""I want you to write a short story about a cat"""')
