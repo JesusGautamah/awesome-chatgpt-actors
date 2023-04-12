@@ -29,5 +29,5 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "csv"
-  spec.add_dependency "openai"
+  spec.add_dependency "ruby-openai"
 end
