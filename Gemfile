@@ -12,7 +12,7 @@ gem "rubocop", "~> 1.21"
 
 gem "csv"
 
-gem "openai"
+gem "ruby-openai"
 
 gem "rails", require: false
 

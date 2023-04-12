@@ -52,14 +52,16 @@ module AwesomeChatgptActors
 
     def translate_prompt(text: nil, language: nil)
       text = "Translate the following text from English to #{language}: \n\n#{text}\n\n"
-      client = OpenAI::Client.new(api_key: openai_api_key)
+      client = OpenAI::Client.new(access_token: openai_api_key)
       response = client.completions(
-        engine: "text-davinci-003", prompt: text,
-        temperature: 0.1, max_tokens: 200,
-        top_p: 1, frequency_penalty: 0,
-        presence_penalty: 0, stop: ["\n\n"]
+        parameters: {
+          model: "text-davinci-003", prompt: text,
+          temperature: 0.1, max_tokens: 200,
+          top_p: 1, frequency_penalty: 0,
+          presence_penalty: 0, stop: ["\n\n"]
+        }
       )
-      response.choices.first.text
+      response["choices"].first["text"]
     end
   end
 end
