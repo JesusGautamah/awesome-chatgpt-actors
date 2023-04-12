@@ -1,6 +1,6 @@
-# AwesomeChatgptActors
+# Awesome Chatgpt Actors
 
-This gem is a collection of actors made for use the [AwesomeChatgptPrompts](https://github.com/f/awesome-chatgpt-prompts) in ruby.
+This gem is a collection of actors made for use the [Awesome Chatgpt Prompts](https://github.com/f/awesome-chatgpt-prompts) in ruby.
 So for prompts information, please refer to that repository.
 
 ## Installation
