@@ -83,6 +83,7 @@ This gem was tested with Rspec. To run the tests, execute:
 
 <!-- Coverage: -->
 <!-- local image path: coverage-image/simplecov-actors.png -->
+[![Coverage Status](https://raw.githubusercontent.com/JesusGautamah/awesome-chatgpt-actors/master/coverage-image/simplecov-actors.png)](  https://raw.githubusercontent.com/JesusGautamah/awesome-chatgpt-actors/master/coverage-image/simplecov-actors.png)
 
 ## Contributing
 
