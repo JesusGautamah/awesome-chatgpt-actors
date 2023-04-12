@@ -68,7 +68,7 @@ AwesomeChatgptActors::CastControl.add_actor(actor: 'Virtual Assistant', prompt: 
 AwesomeChatgptActors::CastControl.remove_actor(actor: 'Virtual Assistant')
 
 # Get a list of all actors
-AwesomeChatgptActors::CastoControl.actors
+AwesomeChatgptActors::CastControl.actors
 
 # Check if an actor exists
 AwesomeChatgptActors::CastControl.actor_exists?(actor: 'Virtual Assistant')
