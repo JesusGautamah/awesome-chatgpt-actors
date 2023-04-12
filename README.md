@@ -48,11 +48,6 @@ actor = AwesomeChatgptActors::Actor.new(
   openai_api_key: 'Your OpenAI API Key' # it can be nil if you provide it as an environment variable OPENAI_API_KEY
 )
 
-# Initialize a new actor with options
-actor = AwesomeChatgptActors::Actor.new(
-  prompt: 'I want you to act as a virtual assistant. I will give you tasks and you will reply with the results of the tasks. I want you to only reply with the results of the tasks, and nothing else. Do not write explanations. My first task is ""I want you to write a short story about a cat"""'
-)
-
 # Initialize a random actor
 actor = AwesomeChatgptActors::Actor.new(
   random: true
