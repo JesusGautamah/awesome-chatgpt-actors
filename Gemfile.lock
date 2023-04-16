@@ -1,9 +1,9 @@
 PATH
   remote: .
   specs:
-    awesome_chatgpt_actors (0.1.1)
+    awesome_chatgpt_actors (0.1.2)
       csv
-      openai
+      ruby-openai
 
 GEM
   remote: https://rubygems.org/
@@ -115,7 +115,6 @@ GEM
     nio4r (2.5.9)
     nokogiri (1.14.3-x86_64-linux)
       racc (~> 1.4)
-    openai (0.3.0)
     parallel (1.22.1)
     parser (3.2.2.0)
       ast (~> 2.4.1)
