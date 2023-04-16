@@ -3,43 +3,41 @@
 module AwesomeChatgptActors
   # This class is the implementation of Awesome Chatgpt Prompts with improvements
   class Actor
-    def initialize(prompt_type: "Virtual Assistant", language: "en", openai_api_key: nil, random: false)
-      @csv_path = CastControl.csv_path
+    def initialize(role: "Virtual Assistant", prompt: nil,  language: "en",  random: false,
+                    has_placeholder: false, accertivity: 1, default_frequency: 0, default_presence: 0)          
+      @csv_path = CastControl.csv_path if language == "en"
+      @csv_path = CastControl.csv_path.gsub("en", language) if language != "en"
       @language = language || "en"
-      @openai_api_key = openai_api_key if openai_api_key
       @actors_csv = CSV.read(@csv_path, headers: true)
-      @actor = prompt_type
-      act_as(prompt_type) unless random
+      @role = role
+      @prompt = prompt
+      @random = random
+      @accertivity = accertivity
+      @default_frequency = default_frequency
+      @default_presence = default_presence
+      @has_placeholder = has_placeholder
+      act_as(role) unless random || prompt
       act_as(random_actor) if random
     end
 
-    attr_accessor :actor, :prompt, :actors_csv
-    attr_reader :csv_path
+    attr_accessor :role, :prompt, :actors_csv, :accertivity, :default_frequency, :default_presence, :has_placeholder
+    attr_reader :csv_path, :random
 
-    def act_as(prompt_type = "Virtual Assistant")
-      @actor = prompt_type
-      actor_row = actors_csv.select { |row| row["act"] == actor }
-      raise ArgumentError, "Actor type not found: #{actor}" if actor_row.empty?
-
+    def act_as(role = "Virtual Assistant")
+      @role = role
+      actor_row = actors_csv.select { |row| row["act"] == role }
+      raise ArgumentError, "Role not found: #{role}" if actor_row.empty?
       @prompt = actor_row.sample["prompt"]
-      self
-    end
-
-    def with_language(lang)
-      raise "No actor initialized" if prompt.nil?
-      raise "No language provided" if lang.nil?
-
-      @prompt = translate_prompt(text: prompt, language: lang)
+      @accertivity = actor_row.sample["accertivity"].to_i
+      @default_frequency = actor_row.sample["default_frequency"].to_i
+      @default_presence = actor_row.sample["default_presence"].to_i
+      @has_placeholder = actor_row.sample["has_placeholder"] == "false" ? false : true
       self
     end
 
     protected
 
     attr_reader :language
-
-    def openai_api_key
-      @openai_api_key ||= ENV.fetch("OPENAI_API_KEY", nil)
-    end
 
     private
 
@@ -48,20 +46,6 @@ module AwesomeChatgptActors
       raise "No actors found" if actor.nil?
 
       actor
-    end
-
-    def translate_prompt(text: nil, language: nil)
-      text = "Translate the following text from English to #{language}: \n\n#{text}\n\n"
-      client = OpenAI::Client.new(access_token: openai_api_key)
-      response = client.completions(
-        parameters: {
-          model: "text-davinci-003", prompt: text,
-          temperature: 0.1, max_tokens: 200,
-          top_p: 1, frequency_penalty: 0,
-          presence_penalty: 0, stop: ["\n\n"]
-        }
-      )
-      response["choices"].first["text"]
     end
   end
 end
