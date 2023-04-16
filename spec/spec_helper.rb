@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'simplecov'
+require "simplecov"
 SimpleCov.start do
-  add_filter '/spec/'
-  add_filter '/lib/awesome_chatgpt_actors.rb'
+  add_filter "/spec/"
+  add_filter "/lib/awesome_chatgpt_actors.rb"
 end
 
 require "awesome_chatgpt_actors"
