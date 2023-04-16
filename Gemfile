@@ -10,9 +10,7 @@ gem "rspec", "~> 3.0"
 
 gem "rubocop", "~> 1.21"
 
-gem "csv"
-
-gem "ruby-openai"
+gem "csv", "~> 3.1"
 
 gem "rails", require: false
 

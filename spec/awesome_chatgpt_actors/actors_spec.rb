@@ -1,20 +1,20 @@
 # frozen_string_literal: true
 
 RSpec.describe AwesomeChatgptActors::Actor do
-  let(:csv_file) { "prompts-data/awesome-chatgpt-prompts.csv" }
-  let(:prompt_type) { "Linux Terminal" }
-  let(:default_type) { "Virtual Assistant" }
+  let(:csv_file) { "prompts-data/awesome-en-prompts.csv" }
+  let(:role) { "Linux Terminal" }
+  let(:default_role) { "Virtual Assistant" }
   let(:default_actor) { AwesomeChatgptActors::Actor.new }
   let(:random_actor) { AwesomeChatgptActors::Actor.new(random: true) }
-  let(:actor) { AwesomeChatgptActors::Actor.new(prompt_type: prompt_type) }
-  let(:portuguese_actor) { AwesomeChatgptActors::Actor.new(prompt_type: prompt_type, language: "pt") }
-  let(:prompt) { CSV.read(csv_file, headers: true).select { |row| row["act"] == prompt_type }.sample["prompt"] }
+  let(:actor) { AwesomeChatgptActors::Actor.new(role: role) }
+  let(:portuguese_actor) { AwesomeChatgptActors::Actor.new(role: default_role, language: "pt") }
+  let(:prompt) { CSV.read(csv_file, headers: true).select { |row| row["act"] == role }.sample["prompt"] }
   let(:default_prompt) do
     CSV.read(csv_file, headers: true)
-       .select { |row| row["act"] == default_type }.sample["prompt"]
+       .select { |row| row["act"] == default_role }.sample["prompt"]
   end
   it "return the prompt to act as" do
-    expect(actor.act_as(prompt_type).prompt).to eq prompt
+    expect(actor.act_as(role).prompt).to eq prompt
   end
 
   it "return the default prompt to act as" do
@@ -32,10 +32,30 @@ RSpec.describe AwesomeChatgptActors::Actor do
   end
 
   it "return the prompt to act as in a different language" do
-    has_to_include = "Quero que você atue como um assistente virtual"
-    expect(portuguese_actor.act_as.with_language("pt").prompt).to include has_to_include
-    has_to_include = "Quiero que actúes como un asistente virtual"
-    expect(portuguese_actor.act_as.with_language("es").prompt).to include has_to_include
+    has_to_include = "Eu quero que você atue como um assistente virtual"
+    expect(portuguese_actor.prompt).to include has_to_include
+  end
+
+  it "return the right prompt to act as in a different language" do
+    has_to_include = "Eu quero que você atue como um terminal Linux"
+    expect(portuguese_actor.act_as(role).prompt).to include has_to_include
+  end
+
+  it "has a has_placeholder boolean" do
+    expect(default_actor.has_placeholder).to eq false
+    expect(portuguese_actor.has_placeholder).to eq false
+  end
+
+  it "has a default accertivity" do
+    expect(default_actor.accertivity).to eq 1
+  end
+
+  it "has a default frequency" do
+    expect(default_actor.default_frequency).to eq 0
+  end
+
+  it "has a default presence" do
+    expect(default_actor.default_presence).to eq 0
   end
 
   it "it returns an error if the prompt type is not found" do
