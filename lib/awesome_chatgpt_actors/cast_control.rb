@@ -77,6 +77,7 @@ module AwesomeChatgptActors
       raise "The actor is nil" if actor.nil?
       raise "File path is nil" if file_path.nil?
       raise "The csv file does not exist" unless File.exist?(file_path)
+
       (raise "The actor does not exist" unless actor_exist?(actor: actor)) if language == "en"
       (raise "The actor does not exist" unless actor_exist_in_pt?(actor: actor)) if language == "pt"
 

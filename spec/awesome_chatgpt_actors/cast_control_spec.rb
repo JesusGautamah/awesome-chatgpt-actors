@@ -4,7 +4,6 @@ RSpec.describe AwesomeChatgptActors::CastControl do
   let(:role) { "Linux Terminal" }
   let(:default_type) { "Virtual Assistant" }
 
-
   it "return the list of actors" do
     expect(AwesomeChatgptActors::CastControl.actors).to be_a Array
     expect(AwesomeChatgptActors::CastControl.actors).not_to be_empty
@@ -35,14 +34,18 @@ RSpec.describe AwesomeChatgptActors::CastControl do
   end
 
   it "remove an actor" do
-    actor.add_actor(actor: "New Actor", prompt: "New Prompt") unless AwesomeChatgptActors::CastControl.actors.include? "New Actor"
+    unless AwesomeChatgptActors::CastControl.actors.include? "New Actor"
+      actor.add_actor(actor: "New Actor", prompt: "New Prompt")
+    end
     actors_list_row = AwesomeChatgptActors::CastControl.actors.size
     AwesomeChatgptActors::CastControl.remove_actor(actor: "New Actor")
     expect(AwesomeChatgptActors::CastControl.actors.size).to eq actors_list_row - 1
   end
 
   it "remove an actor in pt" do
-    actor.add_actor(actor: "Novo Ator", prompt: "Novo Prompt", language: "pt") unless AwesomeChatgptActors::CastControl.actors_pt.include? "Novo Ator"
+    unless AwesomeChatgptActors::CastControl.actors_pt.include? "Novo Ator"
+      actor.add_actor(actor: "Novo Ator", prompt: "Novo Prompt", language: "pt")
+    end
     actors_list_row = AwesomeChatgptActors::CastControl.actors_pt.size
     AwesomeChatgptActors::CastControl.remove_actor(actor: "Novo Ator", language: "pt")
     expect(AwesomeChatgptActors::CastControl.actors_pt.size).to eq actors_list_row - 1
